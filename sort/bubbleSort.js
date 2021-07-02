@@ -1,8 +1,7 @@
 // 冒泡排序
+// arguments:
+// 1. arr: Array 一维数组
 function bubbleSort(arr) {
-  if (!Array.isArray(arr)) {
-    return new Error("入参不是数组！");
-  }
   let len = arr.length;
   for (let i = 0; i < len - 1; i++) {
     for (let j = 0; j < len - 1; j++) {
