@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="demo">
+      data: <span id="theViewModel"></span><br />
+      <input type="text" id="theInputModel" />
+    </div>
+    <script>
+      // 数据对象
+      var obj = {
+        data: "",
+      };
+      obj = new Proxy(obj, {
+        get(target, property) {
+          return target[property];
+        },
+        set(target, property, newValue) {
+          target[property] = newValue;
+          observer();
+        },
+      });
+      function observer() {
+        theViewModel.innerHTML = obj.data;
+        theInputModel.value = obj.data;
+      }
+      // 更新数据层
+      theInputModel.oninput = function () {
+        obj.data = this.value;
+      };
+    </script>
+  </body>
+</html>
