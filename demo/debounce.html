@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>点击推送</button>
+    <script>
+      function debounce(fn, delay) {
+        let timer;
+        return function () {
+          const context = this;
+          const arg = Array.prototype.slice.call(arguments);
+          clearTimeout(timer);
+          timer = setTimeout(function () {
+            fn.apply(context, arg);
+          }, delay);
+        };
+      }
+      function sayHi() {
+        alert("你好！");
+      }
+      document
+        .querySelector("button")
+        .addEventListener("click", debounce(sayHi, 5000));
+    </script>
+  </body>
+</html>
